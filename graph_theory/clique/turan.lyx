@@ -1,0 +1,436 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass amsart
+\begin_preamble
+\usepackage{tikz}
+\usepackage{graphicx}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{decorations.pathreplacing}
+\end_preamble
+\use_default_options false
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman lmodern
+\font_sans lmss
+\font_typewriter lmtt
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\branch Deleted
+\selected 0
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+The Turán graph 
+\begin_inset Formula $T\left(n,r\right)$
+\end_inset
+
+ is a complete multipartite graph formed by partitioning a set of 
+\begin_inset Formula $n$
+\end_inset
+
+ vertices into 
+\begin_inset Formula $r$
+\end_inset
+
+ subsets, with sizes as equal as possible, and connecting two vertices by
+ an edge if and only if they belong to different subsets.
+ The graph will have 
+\begin_inset Formula $\left(n\mod r\right)$
+\end_inset
+
+ subsets of size 
+\begin_inset Formula $\left\lceil n/r\right\rceil $
+\end_inset
+
+, and 
+\begin_inset Formula $r-\left(n\mod r\right)$
+\end_inset
+
+ subsets of size 
+\begin_inset Formula $\left\lfloor n/r\right\rfloor $
+\end_inset
+
+.
+ That is, it's a complete 
+\begin_inset Formula $r$
+\end_inset
+
+-partite graph 
+\begin_inset Formula 
+\[
+K_{\lceil n/r\rceil,\lceil n/r\rceil,\ldots,\lfloor n/r\rfloor,\lfloor n/r\rfloor}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to get the best balance each left over from dividing 
+\begin_inset Formula $n$
+\end_inset
+
+ by 
+\begin_inset Formula $r$
+\end_inset
+
+ should be placed into a group.
+ So for example 
+\begin_inset Formula $n=22$
+\end_inset
+
+ with 
+\begin_inset Formula $r=4$
+\end_inset
+
+.
+ We have 2 left over and they get placed into 2 groups created by dividing
+ 20 by 4, i.e.
+ there will be 2 groups of 6 and 2 groups of 5.
+ Hence 
+\begin_inset Formula $r-\left(n\mod r\right)$
+\end_inset
+
+ groups of size 
+\begin_inset Formula $\left\lfloor n/r\right\rfloor $
+\end_inset
+
+ that fit if there were no left over and 
+\begin_inset Formula $n\mod r$
+\end_inset
+
+ groups of 
+\begin_inset Formula $\left\lfloor n/r\right\rfloor +1=\left\lceil n/r\right\rceil $
+\end_inset
+
+.
+ The number of edges is 
+\begin_inset Formula 
+\[
+\frac{1}{2}\left(n^{2}-n\mod r\lceil n/r\rceil^{2}-\left(r-\left(n\mod r\right)\right)\lfloor n/r\rfloor^{2}\right)\leq\left(1-\frac{1}{r}\right)\frac{n^{2}}{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $K_{n}$
+\end_inset
+
+ has 
+\begin_inset Formula $\binom{n}{2}=\frac{n\left(n-1\right)}{2}$
+\end_inset
+
+ edges.
+ In 
+\begin_inset Formula $T\left(n,r\right)$
+\end_inset
+
+ each vertex has degree either 
+\begin_inset Formula $n-\left\lceil n/r\right\rceil $
+\end_inset
+
+ or 
+\begin_inset Formula $n-\left\lfloor n/r\right\rfloor $
+\end_inset
+
+: a vertex in a 
+\begin_inset Quotes eld
+\end_inset
+
+no left over
+\begin_inset Quotes erd
+\end_inset
+
+ group has 
+\begin_inset Formula $n-\left\lfloor n/r\right\rfloor $
+\end_inset
+
+ edges (because it has no edges into its own 
+\begin_inset Formula $\left\lfloor n/r\right\rfloor $
+\end_inset
+
+ size group), and a vertex in a 
+\begin_inset Quotes eld
+\end_inset
+
+left over
+\begin_inset Quotes erd
+\end_inset
+
+ group has 
+\begin_inset Formula $n-\left\lceil n/r\right\rceil $
+\end_inset
+
+ edges.
+ There 
+\begin_inset Formula $\left(r-\left(n\mod r\right)\right)\left\lfloor n/r\right\rfloor $
+\end_inset
+
+ vertices of the first type and 
+\begin_inset Formula $\left(n\mod r\right)\left\lfloor n/r\right\rfloor $
+\end_inset
+
+ vertices of the second type.
+ Therefore the total number of edges is 
+\begin_inset Formula 
+\[
+f\left(n,r\right)=\frac{1}{2}\left[\left(\left(n\mod r\right)\left\lfloor n/r\right\rfloor \right)\left(n-\left\lfloor n/r\right\rfloor \right)+\left(\left(r-\left(n\mod r\right)\right)\left\lfloor n/r\right\rfloor \right)\left(n-\left\lfloor n/r\right\rfloor \right)\right]
+\]
+
+\end_inset
+
+The 
+\begin_inset Formula $1/2$
+\end_inset
+
+ because of double counting.
+\end_layout
+
+\begin_layout Standard
+By the pigeonhole principle, every set of 
+\begin_inset Formula $r+1$
+\end_inset
+
+ vertices in the Turán graph includes two vertices in the same partition
+ subset; therefore, the Turán graph does not contain a clique of size 
+\begin_inset Formula $r+1$
+\end_inset
+
+ (because vertices from the same subset don't hav edges).
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\mathcal{G}_{N,M}$
+\end_inset
+
+ be the family of all graphs with 
+\begin_inset Formula $N$
+\end_inset
+
+ nodes and 
+\begin_inset Formula $M$
+\end_inset
+
+ edges.
+ Each 
+\begin_inset Formula $G\in\mathcal{G}_{N,M}$
+\end_inset
+
+ contains some cliques.
+ Let 
+\begin_inset Formula $c\left(G\right)$
+\end_inset
+
+ be the maximum number of nodes in any clique in 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ The problem asks you to find
+\begin_inset Formula 
+\[
+\min\left\{ c\left(G\right):G\in\mathcal{G}_{N,M}\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In words: if a graph has 
+\begin_inset Formula $N$
+\end_inset
+
+ nodes and 
+\begin_inset Formula $M$
+\end_inset
+
+ edges, what is the smallest possible size of its largest clique? A small
+ example may help.
+ Suppose that 
+\begin_inset Formula $N=M=6$
+\end_inset
+
+.
+ One of the graphs in 
+\begin_inset Formula $\mathcal{G}_{6,6}$
+\end_inset
+
+ is the graph 
+\begin_inset Formula $G$
+\end_inset
+
+ consisting of two disjoint triangles; each of those triangles is a clique
+ of size 3, so 
+\begin_inset Formula $c\left(G\right)=3$
+\end_inset
+
+.
+ But another graph in 
+\begin_inset Formula $\mathcal{G}_{6,6}$
+\end_inset
+
+ is the circuit 
+\begin_inset Formula $C_{6}$
+\end_inset
+
+ of 6 nodes, like a necklace; its maximal cliques are pairs of adjacent
+ vertices, so 
+\begin_inset Formula $c\left(G\right)=2$
+\end_inset
+
+.
+ You can’t have maximal cliques any smaller than that in a graph that has
+ at least one edge, so
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\min\left\{ c\left(G\right):G\in\mathcal{G}_{N,M}\right\} =2
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+According to Turán's theorem, the Turán graph has the maximum possible number
+ of edges among all 
+\begin_inset Formula $\left(r+1\right)$
+\end_inset
+
+-clique-free graphs with 
+\begin_inset Formula $n$
+\end_inset
+
+ vertices, i.e.
+ 1 more edge and there will be an 
+\begin_inset Formula $r+1$
+\end_inset
+
+ clique.
+\end_layout
+
+\begin_layout Standard
+So a naive algorithm is set 
+\begin_inset Formula $r=n-1$
+\end_inset
+
+ and compute 
+\begin_inset Formula $f\left(n,r\right)$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $f\left(n,r\right)<m$
+\end_inset
+
+ then then every 
+\begin_inset Formula $G\in\mathcal{G}_{N,M}$
+\end_inset
+
+ has at least an 
+\begin_inset Formula $r+1$
+\end_inset
+
+ clique and so the minimum largest clique cannot be smaller than 
+\begin_inset Formula $r+1$
+\end_inset
+
+.
+ Otherwise decrement 
+\begin_inset Formula $r$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A faster way is Binary search for the largest 
+\begin_inset Formula $r$
+\end_inset
+
+ such that 
+\begin_inset Formula $f\left(n,r\right)\leq m$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_body
+\end_document
