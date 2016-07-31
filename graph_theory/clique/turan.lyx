@@ -407,7 +407,12 @@ So a naive algorithm is set
 \begin_inset Formula $r+1$
 \end_inset
 
- clique and so the minimum largest clique cannot be smaller than 
+ clique and so the minimum largest (largest since we're counting down from
+ 
+\begin_inset Formula $n$
+\end_inset
+
+) clique cannot be smaller than 
 \begin_inset Formula $r+1$
 \end_inset
 
