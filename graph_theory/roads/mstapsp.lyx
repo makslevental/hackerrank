@@ -1,0 +1,261 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass amsart
+\begin_preamble
+\usepackage{tikz}
+\usepackage{graphicx}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{decorations.pathreplacing}
+\end_preamble
+\use_default_options false
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman lmodern
+\font_sans lmss
+\font_typewriter lmtt
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\branch Deleted
+\selected 0
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Lemma
+If all of the edge weights of a graph 
+\begin_inset Formula $G$
+\end_inset
+
+ are unique powers of 2 then a path 
+\begin_inset Formula $P$
+\end_inset
+
+ is a shortest path in 
+\begin_inset Formula $G$
+\end_inset
+
+ iff it's a shortest in the MST of 
+\begin_inset Formula $G$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Suppose the shortest path, 
+\begin_inset Formula $P$
+\end_inset
+
+, between 
+\begin_inset Formula $u$
+\end_inset
+
+ and 
+\begin_inset Formula $v$
+\end_inset
+
+ was not on the MST.
+ By choosing 
+\begin_inset Formula $u$
+\end_inset
+
+ and 
+\begin_inset Formula $v$
+\end_inset
+
+ appropriately, we can assume 
+\begin_inset Formula $P$
+\end_inset
+
+ has no edges in common with the MST and has length 1.
+ Why? Since the MST is a spanning tree, every edge in the graph is either
+ an edge of the MST or a cross-edge.
+ If there is a shortest path 
+\begin_inset Formula $P'$
+\end_inset
+
+ between two vertices which is not part of the spanning tree, then there
+ is an edge 
+\begin_inset Formula $e$
+\end_inset
+
+ on 
+\begin_inset Formula $P'$
+\end_inset
+
+ that is not part of the MST.
+ If we then let 
+\begin_inset Formula $P$
+\end_inset
+
+ be the path consisting only of 
+\begin_inset Formula $e=(x,y)$
+\end_inset
+
+, then, by the optimality of 
+\begin_inset Formula $P'$
+\end_inset
+
+, 
+\begin_inset Formula $P$
+\end_inset
+
+ will be the shortest path between 
+\begin_inset Formula $x,y$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $u=x,v=y$
+\end_inset
+
+ and 
+\begin_inset Formula $w$
+\end_inset
+
+ be the weight of 
+\begin_inset Formula $e$
+\end_inset
+
+.
+ Further let 
+\begin_inset Formula $e'$
+\end_inset
+
+ be the edge in the MST with the largest weight, 
+\begin_inset Formula $w'$
+\end_inset
+
+, on the (unique) path from 
+\begin_inset Formula $u$
+\end_inset
+
+ to 
+\begin_inset Formula $v$
+\end_inset
+
+ in the MST.
+ Now if 
+\begin_inset Formula $w>w'$
+\end_inset
+
+ then all weights on the MST path are also less than 
+\begin_inset Formula $w$
+\end_inset
+
+, so since they are distinct powers of 2 their sum is less than 
+\begin_inset Formula $w$
+\end_inset
+
+ - contradicting the fact that 
+\begin_inset Formula $P$
+\end_inset
+
+ is the shortest path.
+ If 
+\begin_inset Formula $w'>w$
+\end_inset
+
+, then we can remove 
+\begin_inset Formula $e'$
+\end_inset
+
+ from the MST and add 
+\begin_inset Formula $P$
+\end_inset
+
+.
+ The result is a spanning tree with a smaller overall weight, contradicting
+ the fact that the original spanning tree had minimal weight.
+ Why spanning and a tree? When we remove 
+\begin_inset Formula $e'$
+\end_inset
+
+ we break the MST into two (acyclic) components, one containing 
+\begin_inset Formula $u$
+\end_inset
+
+ and one containing 
+\begin_inset Formula $v$
+\end_inset
+
+.
+ Note that the two components make a spanning forest.
+ Adding the edge 
+\begin_inset Formula $e=(u,v)$
+\end_inset
+
+ does not introduce any new cycles (because 
+\begin_inset Formula $u,v$
+\end_inset
+
+ are disjoint forests), and it connects the two components, which are themselves
+ spanning forests (making a spanning tree).
+\end_layout
+
+\end_body
+\end_document
