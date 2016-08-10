@@ -51,11 +51,6 @@ for _ in range(t):
     
     summ = lambda i,j: sums[j]-sums[i-1] if i>0 else sums[j]
 
-    print(arr)
-    print(sums)
-    for i in range(n):
-        for j in range(i,n):
-            print(i,j,sums[j]-sums[i]+arr[i])
 #     print("hello")
     splits = [[() for i in range(n)] for j in range(n)]
     points = [[0 for i in range(n)] for j in range(n)]
