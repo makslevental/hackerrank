@@ -30,12 +30,14 @@ class node(object):
     def __str__(self, *args, **kwargs):
         return str((self.val,self.prty,self.size,(self.prnt.val,self.prnt.prty) if self.prnt else None))
     
+    # size needs to be recalculated all the way up to the root on insertions and deletions
     def recalc_size(self):
         self.size = (self.lchild.size if self.lchild else 0) + (self.rchild.size if self.rchild else 0) + 1 
         
+    # always need to keep track of the root because it potentially changes 
     def find_root(self):
         p = self
-        while p.prnt != None: # find root
+        while p.prnt != None: 
             p = p.prnt
         return p
     
@@ -55,12 +57,6 @@ class node(object):
             self.lchild.pprint(t, True, sb)
         return sb
 
-        # print(pref + (r"└── " if isTail else r"├── ") + str(self.val))
-        # ls = list(iter(self))
-        # for i in range(0,len(ls)-1):
-        #     ls[i].pprint(pref + (r"    " if isTail else r"│   "), False)
-        # if len(ls) > 0:
-        #     ls[-1].pprint(pref + (r"    " if isTail else r"│   "), True)
 
 @total_ordering        
 class End(object):
@@ -73,6 +69,7 @@ BOT = End()
 def rotate_left(p,r):
     
     p.rchild = r.lchild
+    # idiot - don't forget to reset child parent
     if p.rchild != None:
         p.rchild.prnt = p
     r.lchild = p
@@ -124,7 +121,8 @@ def bubble_down(p):
         
         
 def insert(root,key):
-
+    # insert and remove traversal are different: insert needs to 
+    # keep going but remove needs to stop
     p = root
     while (p.lchild and key <= p.val) or (p.rchild and key > p.val):
         if p.lchild and key <= p.val:
@@ -139,6 +137,7 @@ def insert(root,key):
         nod = node(key,myRand.uniform(0,1),p)    
         p.rchild = nod
     
+    # recalculate tree decorations all the way up to the root
     p = nod
     while p != None: # find root
         p.recalc_size()
@@ -214,14 +213,12 @@ tree = None
 size_tree = 0
 for _ in range(n):
     q,i = input().strip().split()
-#     print(q,i)
     if q == 'a':
-        size_tree +=1
+        size_tree +=1 # gotta keep track of the size of the tree
         if tree == None:
             tree = node(int(i),myRand.uniform(0,1))
         else:
             insert(tree.find_root(),int(i))
-#         print('\n',  '\n'.join(map(lambda x: ''.join(x),tree.find_root().ppprint())),'\n')
         if size_tree%2 == 1:
             print(remove_exponent(select(tree.find_root(),size_tree//2+1)))
         else:
@@ -235,13 +232,12 @@ for _ in range(n):
                 remove(tree.find_root(),int(i))
             except EmptyTreeError:
                 tree = None
-                size_tree = 0
+                size_tree = 0 # gotta reset tree size
                 print("Wrong!")
                 continue
-            except KeyError:
+            except KeyError: # just an artifact of the problem statement: removing nonexistent key means wrong
                 print("Wrong!")
                 continue
-#             print('\n',  '\n'.join(map(lambda x: ''.join(x),tree.find_root().ppprint())),'\n')
             if size_tree%2 == 1:
                 print(remove_exponent(select(tree.find_root(),size_tree//2+1)))
             else:
