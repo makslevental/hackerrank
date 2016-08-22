@@ -15,7 +15,15 @@ class EmptyTreeError(Exception):
     def __init__(self):
         self.error = "Empty tree"
 
-class Node(object):
+class Node(object): 
+    _root = None
+    def get_root(self):
+        return self._root
+    def set_root(self,val):
+        self._root = val
+    root = property(get_root, set_root)
+    
+    
     def __init__(self,val,prty,prnt=None,lchild=None,rchild=None):
         self.prnt = prnt
         self.lchild = lchild
@@ -23,6 +31,8 @@ class Node(object):
         self.val = val
         self.prty = prty
         self.size = 1
+        if self.root == None:
+            self.root = self
         
     def __str__(self, *args, **kwargs):
         # return str((self.val,self.prty,self.size,(self.prnt.val,self.prnt.prty) if self.prnt else None))
@@ -33,12 +43,12 @@ class Node(object):
         self.size = (self.lchild.size if self.lchild else 0) + (self.rchild.size if self.rchild else 0) + 1 
         
     # always need to keep track of the root because it potentially changes
-    @property 
-    def root(self):
-        p = self
-        while p.prnt != None: 
-            p = p.prnt
-        return p
+    #@property 
+#     def root(self):
+#         p = self
+#         while p.prnt != None: 
+#             p = p.prnt
+#         return p
     
     def ppprint(self):
         return self.pprint([],True,[])
@@ -110,9 +120,22 @@ def bubble_up(p):
             rotate_right(p.prnt,p)
         else:
             rotate_left(p.prnt,p)
+    if p.prnt == None:
+        p.root = p
     
 
 def bubble_down(p):
+    
+    
+    if p.root == p:
+        if p.lchild != None and (p.rchild == None or (p.lchild.prty < p.rchild.prty)):
+            rotate_right(p,p.lchild)
+            p.root = p.prnt
+        elif p.rchild != None and (p.lchild == None or (p.rchild.prty < p.lchild.prty)):
+            rotate_left(p,p.rchild)
+            p.root = p.prnt
+        
+        
     while (p.lchild and p.prty > p.lchild.prty) or (p.rchild and p.prty > p.rchild.prty):      
         if p.lchild != None and (p.rchild == None or (p.lchild.prty < p.rchild.prty)):
             rotate_right(p,p.lchild)
@@ -247,6 +270,7 @@ def merge(ltre,rtre):
 n,m = map(int,input().strip().split())
 arr = list(map(int,input().strip().split()))
 tree = Node((0,arr[0]),myRand.uniform(0,1))
+tree.root = tree
 for i,a in enumerate(arr[1:],start=1):
     insert(tree.root, (i,a))
 # arr2 = arr[:]
